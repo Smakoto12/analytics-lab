@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【無料】大人のトートバッグ適正サイズ・素材診断｜大人の定番品＆サイズ研究所</title>
+  <meta name="description" content="3つの質問に答えるだけで、40代からのビジネス・休日に最適なトートバッグのサイズ感と素材を診断します。">
+
+  <!-- ▼ ここに既存のClarityやGA4/GTMの計測タグを貼り付けてください ▼ -->
+
+  <!-- ▲ 計測タグここまで ▲ -->
+
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --text-color: #2c3e50;
+      --sub-text: #5a6a7e;
+      --accent-color: #34495e;
+      --cta-color: #2980b9;
+      --cta-hover: #1f6391;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --selected-bg: #ebf5fb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", "Noto Sans JP", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.7;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 5%;
+    }
+
+    .header-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    .back-link {
+      font-size: 0.85rem;
+      color: var(--sub-text);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 5%;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .page-header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      font-size: 0.9rem;
+      color: var(--sub-text);
+    }
+
+    /* 質問カード */
+    .question-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .q-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .q-num {
+      background: var(--accent-color);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+      margin-right: 0.6rem;
+    }
+
+    .options {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .option-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: #fff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 6px;
+      padding: 0.9rem 1rem;
+      font-size: 0.95rem;
+      color: var(--text-color);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .option-btn:hover {
+      border-color: var(--cta-color);
+    }
+
+    .option-btn.selected {
+      background: var(--selected-bg);
+      border-color: var(--cta-color);
+      font-weight: 700;
+      color: var(--cta-color);
+    }
+
+    /* 診断実行ボタン */
+    .submit-area {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .btn-diagnose {
+      background-color: var(--cta-color);
+      color: #fff;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-diagnose:hover {
+      background-color: var(--cta-hover);
+    }
+
+    .btn-diagnose:disabled {
+      background-color: #bdc3c7;
+      cursor: not-allowed;
+    }
+
+    /* 診断結果エリア */
+    #result-area {
+      display: none;
+      background: var(--card-bg);
+      border: 2px solid var(--cta-color);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-top: 2rem;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-badge {
+      display: inline-block;
+      background: var(--cta-color);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.2rem 0.7rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    .result-title {
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.2rem 0;
+      font-size: 0.9rem;
+    }
+
+    .spec-table th, .spec-table td {
+      border: 1px solid var(--border-color);
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    .spec-table th {
+      background: #f1f5f9;
+      width: 32%;
+    }
+
+    .advice-box {
+      background: #f8fafc;
+      border-left: 4px solid var(--accent-color);
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin: 1.2rem 0;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn-link {
+      flex: 1;
+      min-width: 220px;
+      text-align: center;
+      background: var(--accent-color);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.85rem 1rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .btn-retry {
+      background: transparent;
+      border: 1px solid var(--sub-text);
+      color: var(--sub-text);
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 5%;
+      font-size: 0.8rem;
+      color: var(--sub-text);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="./" class="site-title">大人の定番品＆サイズ研究所</a>
+      <a href="./" class="back-link">← TOPへ戻る</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>大人のトートバッグ適正サイズ・素材診断</h1>
+      <p>3つの質問を選ぶだけで、失敗しないサイズ基準とおすすめ素材を判定します。</p>
+    </div>
+
+    <!-- Q1 -->
+    <div class="question-card" id="q1-card">
+      <div class="q-title"><span class="q-num">Q1</span>主な利用シーンはどれに近いですか？</div>
+      <div class="options" data-question="use">
+        <button type="button" class="option-btn" data-value="biz" id="q1-biz">通勤・ビジネス（スーツやジャケパンが中心）</button>
+        <button type="button" class="option-btn" data-value="hybrid" id="q1-hybrid">仕事と休日の兼用（オンオフどちらでも使いたい）</button>
+        <button type="button" class="option-btn" data-value="casual" id="q1-casual">休日・普段使い（私服での外出やカフェ作業など）</button>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-card" id="q2-card">
+      <div class="q-title"><span class="q-num">Q2</span>持ち歩く中で一番大きい荷物はどれですか？</div>
+      <div class="options" data-question="size">
+        <button type="button" class="option-btn" data-value="large" id="q2-large">15〜16インチのノートPC、または厚めの書類・水筒など荷物多め</button>
+        <button type="button" class="option-btn" data-value="medium" id="q2-medium">13〜14インチのノートPC、またはA4クリアファイル</button>
+        <button type="button" class="option-btn" data-value="small" id="q2-small">タブレット・財布・スマホ・折りたたみ傘程度の身軽な荷物</button>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-card" id="q3-card">
+      <div class="q-title"><span class="q-num">Q3</span>バッグ選びで一番重視したいポイントは？</div>
+      <div class="options" data-question="priority">
+        <button type="button" class="option-btn" data-value="light" id="q3-light">軽さと雨への強さ（天候を気にせず毎日ガシガシ使いたい）</button>
+        <button type="button" class="option-btn" data-value="classy" id="q3-classy">大人の上品さと自立性（床に置いても倒れず、きちんと見える）</button>
+        <button type="button" class="option-btn" data-value="durable" id="q3-durable">タフさとメンテナンスの楽さ（傷や擦れが目立ちにくい）</button>
+      </div>
+    </div>
+
+    <div class="submit-area">
+      <button type="button" class="btn-diagnose" id="btn-run-diagnosis" disabled>3つ選択して診断結果を見る</button>
+    </div>
+
+    <!-- 診断結果表示エリア -->
+    <div id="result-area">
+      <span class="result-badge">診断結果</span>
+      <h2 class="result-title" id="res-title"></h2>
+      <p id="res-summary"></p>
+
+      <table class="spec-table">
+        <tr>
+          <th>推奨サイズ（横幅）</th>
+          <td id="res-width"></td>
+        </tr>
+        <tr>
+          <th>推奨マチ（奥行き）</th>
+          <td id="res-depth"></td>
+        </tr>
+        <tr>
+          <th>持ち手（ハンドル）</th>
+          <td id="res-handle"></td>
+        </tr>
+        <tr>
+          <th>おすすめ素材・カラー</th>
+          <td id="res-material"></td>
+        </tr>
+      </table>
+
+      <div class="advice-box" id="res-advice"></div>
+
+      <div class="result-actions">
+        <a href="./#articles" class="btn-link" id="btn-res-article">実測レビュー記事を読む</a>
+      </div>
+
+      <button type="button" class="btn-retry" id="btn-retry">条件を変えてもう一度診断する</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 大人の定番品＆サイズ研究所 (analytics-lab)</p>
+  </footer>
+
+  <script>
+    const answers = { use: null, size: null, priority: null };
+    const diagnoseBtn = document.getElementById('btn-run-diagnosis');
+    const resultArea = document.getElementById('result-area');
+
+    // 選択肢クリック処理
+    document.querySelectorAll('.options').forEach(group => {
+      const qKey = group.dataset.question;
+      group.querySelectorAll('.option-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          group.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          answers[qKey] = btn.dataset.value;
+
+          if (answers.use && answers.size && answers.priority) {
+            diagnoseBtn.disabled = false;
+            diagnoseBtn.textContent = '診断結果を表示する';
+          }
+        });
+      });
+    });
+
+    // 診断ロジック
+    diagnoseBtn.addEventListener('click', () => {
+      let widthText = '';
+      let depthText = '';
+      let handleText = '';
+      let materialText = '';
+      let titleText = '';
+      let summaryText = '';
+      let adviceText = '';
+
+      // サイズ判定
+      if (answers.size === 'large') {
+        widthText = '横幅 42cm〜45cm（上部） / 底部 38cm前後';
+        depthText = 'マチ 13cm〜15cm（PCと水筒が並んで入る幅）';
+      } else if (answers.size === 'medium') {
+        widthText = '横幅 38cm〜41cm（上部） / 底部 34cm前後';
+        depthText = 'マチ 11cm〜13cm（A4・13インチPCがスマートに収まる幅）';
+      } else {
+        widthText = '横幅 34cm〜37cm（コンパクトなミドルサイズ）';
+        depthText = 'マチ 10cm〜12cm（膨らみすぎず体にフィットする幅）';
+      }
+
+      // 持ち手判定
+      if (answers.use === 'biz' || answers.use === 'hybrid') {
+        handleText = '立ち上がり 22cm〜25cm（コートやジャケットの上から肩掛けできる長さ）';
+      } else {
+        handleText = '立ち上がり 18cm〜22cm（手持ちでも地面につかず、薄着なら肩掛けも可能）';
+      }
+
+      // 素材＆カラー判定
+      if (answers.priority === 'light') {
+        materialText = '高密度撥水ナイロン または コーデュラ素材（チャコールグレー）';
+        titleText = '軽快・全天候型の「撥水ナイロン・グレートート」が最適！';
+        summaryText = '毎日の移動や急な雨でもストレスなく使える実用性重視のモデルが合っています。';
+        adviceText = '【40代の選び方ポイント】ナイロン素材は安っぽく見えないよう、金具が控えめでハリのある厚手生地を選ぶのがコツです。チャコールグレーなら黒より重くならず、スーツにも私服にも自然に馴染みます。';
+      } else if (answers.priority === 'classy') {
+        materialText = 'シボ革（シュリンクレザー） または 上質なスプリットレザー（ミディアム〜チャコールグレー）';
+        titleText = '自立して上品に決まる「シボ革・グレートート」が最適！';
+        summaryText = '商談や食事の席で床に置いても自立し、40代らしい落ち着きと清潔感を演出できるモデルです。';
+        adviceText = '【40代の選び方ポイント】スムースレザーよりも表面に凹凸のある「シボ革」を選ぶと、日常の小さな引っかき傷や雨ジミが圧倒的に目立ちにくくなります。';
+      } else {
+        materialText = 'PVCコーティングキャンバス または バリスティックナイロン（グレー系）';
+        titleText = '手入れが楽でタフに使える「高耐久グレートート」が最適！';
+        summaryText = '気を使わずに荷物を入れられ、サッと拭くだけで綺麗さを保てるタフな仕様がぴったりです。';
+        adviceText = '【40代の選び方ポイント】グレー系の生地は埃や擦れ跡が目立ちにくいのが最大の利点です。購入直後に防水スプレーを一度かけておくだけで、汚れの定着を大幅に防げます。';
+      }
+
+      document.getElementById('res-title').textContent = titleText;
+      document.getElementById('res-summary').textContent = summaryText;
+      document.getElementById('res-width').textContent = widthText;
+      document.getElementById('res-depth').textContent = depthText;
+      document.getElementById('res-handle').textContent = handleText;
+      document.getElementById('res-material').textContent = materialText;
+      document.getElementById('res-advice').textContent = adviceText;
+
+      resultArea.style.display = 'block';
+      resultArea.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // リセット処理
+    document.getElementById('btn-retry').addEventListener('click', () => {
+      answers.use = null;
+      answers.size = null;
+      answers.priority = null;
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      diagnoseBtn.disabled = true;
+      diagnoseBtn.textContent = '3つ選択して診断結果を見る';
+      resultArea.style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>
